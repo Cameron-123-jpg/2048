@@ -17,7 +17,7 @@ public class MyProject {
         System.out.println(GREEN + "Initializing game board...");
 
         // Loading bar
-        String loadingBar =  "";
+        String loadingBar = "";
         int totalSteps = 50;
         for (int i = 0; i <= totalSteps; i++) {
             loadingBar = "=".repeat(i) + " ".repeat(totalSteps - i);
@@ -46,7 +46,7 @@ public class MyProject {
 
         System.out.println("\nLet's play a game of 2048!");
         System.out.println("Type 'left', 'right', 'up', 'down' to move tiles.");
-        System.out.println( "Type 'exit' to quit the game.");
+        System.out.println("Type 'exit' to quit the game.");
         System.out.println("\nPress Enter to start...");
         sc.nextLine();
 
@@ -66,10 +66,10 @@ public class MyProject {
 
             boolean moved = false;
             switch (move) {
-                case "left"  -> moved = logic.moveLeft(board);
+                case "left" -> moved = logic.moveLeft(board);
                 case "right" -> moved = logic.moveRight(board);
-                case "up"    -> moved = logic.moveUp(board);
-                case "down"  -> moved = logic.moveDown(board);
+                case "up" -> moved = logic.moveUp(board);
+                case "down" -> moved = logic.moveDown(board);
                 default -> System.out.println("Invalid move. Please enter left, right, up, down or exit.");
             }
 
@@ -84,7 +84,7 @@ public class MyProject {
                     break;
                 }
                 if (logic.hasWon(board)) {
-                    System.out.println("🎉 You made 2048! You win! Final Score: " + logic.getScore());
+                    System.out.println("You made 2048! You win! Final Score: " + logic.getScore());
                     break;
                 }
             }

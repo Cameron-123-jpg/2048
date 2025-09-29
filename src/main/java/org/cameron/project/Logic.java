@@ -26,10 +26,12 @@ public class Logic {
         List<int[]> empty = new ArrayList<>();
         for (int r = 0; r < 4; r++) {
             for (int c = 0; c < 4; c++) {
-                if (board[r][c] == 0) empty.add(new int[]{r, c});
+                if (board[r][c] == 0)
+                    empty.add(new int[] { r, c });
             }
         }
-        if (empty.isEmpty()) return; 
+        if (empty.isEmpty())
+            return;
         int[] pos = empty.get(rand.nextInt(empty.size()));
         board[pos[0]][pos[1]] = (rand.nextInt(10) == 0) ? 4 : 2;
     }
@@ -54,7 +56,8 @@ public class Logic {
     private int[] compressAndMerge(int[] line) {
         List<Integer> newLine = new ArrayList<>();
         for (int val : line) {
-            if (val != 0) newLine.add(val);
+            if (val != 0)
+                newLine.add(val);
         }
 
         for (int i = 0; i < newLine.size() - 1; i++) {
@@ -65,7 +68,8 @@ public class Logic {
             }
         }
 
-        while (newLine.size() < 4) newLine.add(0);
+        while (newLine.size() < 4)
+            newLine.add(0);
 
         return newLine.stream().mapToInt(Integer::intValue).toArray();
     }
@@ -75,7 +79,8 @@ public class Logic {
         boolean moved = false;
         for (int r = 0; r < 4; r++) {
             int[] newRow = compressAndMerge(board[r]);
-            if (!Arrays.equals(board[r], newRow)) moved = true;
+            if (!Arrays.equals(board[r], newRow))
+                moved = true;
             board[r] = newRow;
         }
         return moved;
@@ -85,10 +90,13 @@ public class Logic {
         boolean moved = false;
         for (int r = 0; r < 4; r++) {
             int[] reversed = new int[4];
-            for (int c = 0; c < 4; c++) reversed[c] = board[r][3 - c];
+            for (int c = 0; c < 4; c++)
+                reversed[c] = board[r][3 - c];
             int[] newRow = compressAndMerge(reversed);
-            for (int c = 0; c < 4; c++) board[r][3 - c] = newRow[c];
-            if (!Arrays.equals(reversed, newRow)) moved = true;
+            for (int c = 0; c < 4; c++)
+                board[r][3 - c] = newRow[c];
+            if (!Arrays.equals(reversed, newRow))
+                moved = true;
         }
         return moved;
     }
@@ -97,10 +105,13 @@ public class Logic {
         boolean moved = false;
         for (int c = 0; c < 4; c++) {
             int[] col = new int[4];
-            for (int r = 0; r < 4; r++) col[r] = board[r][c];
+            for (int r = 0; r < 4; r++)
+                col[r] = board[r][c];
             int[] newCol = compressAndMerge(col);
-            for (int r = 0; r < 4; r++) board[r][c] = newCol[r];
-            if (!Arrays.equals(col, newCol)) moved = true;
+            for (int r = 0; r < 4; r++)
+                board[r][c] = newCol[r];
+            if (!Arrays.equals(col, newCol))
+                moved = true;
         }
         return moved;
     }
@@ -109,10 +120,13 @@ public class Logic {
         boolean moved = false;
         for (int c = 0; c < 4; c++) {
             int[] col = new int[4];
-            for (int r = 0; r < 4; r++) col[r] = board[3 - r][c];
+            for (int r = 0; r < 4; r++)
+                col[r] = board[3 - r][c];
             int[] newCol = compressAndMerge(col);
-            for (int r = 0; r < 4; r++) board[3 - r][c] = newCol[r];
-            if (!Arrays.equals(col, newCol)) moved = true;
+            for (int r = 0; r < 4; r++)
+                board[3 - r][c] = newCol[r];
+            if (!Arrays.equals(col, newCol))
+                moved = true;
         }
         return moved;
     }
@@ -120,13 +134,14 @@ public class Logic {
     public boolean isGameOver(int[][] board) {
         for (int r = 0; r < 4; r++) {
             for (int c = 0; c < 4; c++) {
-                if (board[r][c] == 0) return false;
+                if (board[r][c] == 0)
+                    return false;
             }
         }
         for (int r = 0; r < 4; r++) {
             for (int c = 0; c < 4; c++) {
                 if ((r < 3 && board[r][c] == board[r + 1][c]) ||
-                    (c < 3 && board[r][c] == board[r][c + 1])) {
+                        (c < 3 && board[r][c] == board[r][c + 1])) {
                     return false;
                 }
             }
@@ -135,11 +150,12 @@ public class Logic {
     }
 
     public boolean hasWon(int[][] board) {
-    for (int r = 0; r < 4; r++) {
-        for (int c = 0; c < 4; c++) {
-            if (board[r][c] == 2048) return true;
+        for (int r = 0; r < 4; r++) {
+            for (int c = 0; c < 4; c++) {
+                if (board[r][c] == 2048)
+                    return true;
+            }
         }
+        return false;
     }
-    return false;
-}
 }
